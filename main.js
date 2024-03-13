@@ -20,9 +20,13 @@ class Player {
   }
 
   update() {
+    this.draw();
     this.position.y++;
   }
 }
+
+// Create Player
+const player = new Player();
 
 function animate() {
   // Recursion
@@ -30,6 +34,8 @@ function animate() {
   // Recreate canvas every single time animate() is called
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
+
+  player.update();
 }
 
 animate();
