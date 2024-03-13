@@ -15,18 +15,21 @@ class Player {
 
   draw() {
     c.fillStyle = "red";
-    c.fillRect(200, y, 100, 100);
+    // x & y refer to those created in the constructor
+    c.fillRect(this.position.x, this.position.y, 100, 100);
+  }
+
+  update() {
+    this.position.y++;
   }
 }
 
-let y = 100;
 function animate() {
   // Recursion
   window.requestAnimationFrame(animate);
   // Recreate canvas every single time animate() is called
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
-  y++;
 }
 
 animate();
