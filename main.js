@@ -82,6 +82,12 @@ const keys = {
   },
 };
 
+// Background Sprite
+const background = new Sprite({
+  position: { x: 0, y: 0 },
+  imageSrc: "./img/background.png",
+});
+
 // Animate
 function animate() {
   // Recursion
@@ -89,6 +95,9 @@ function animate() {
   // Recreate canvas every single time animate() is called
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Render background on screen
+  background.update();
 
   player.update();
   player2.update();
