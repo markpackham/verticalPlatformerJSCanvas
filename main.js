@@ -44,6 +44,7 @@ class Player {
 const player = new Player({ x: 0, y: 0 });
 const player2 = new Player({ x: 300, y: 100 });
 
+// Animate
 function animate() {
   // Recursion
   window.requestAnimationFrame(animate);
@@ -56,3 +57,7 @@ function animate() {
 }
 
 animate();
+
+window.addEventListener("keydown", (event) => {
+  console.log(event);
+});
