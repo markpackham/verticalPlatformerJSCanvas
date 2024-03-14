@@ -28,6 +28,11 @@ class Player {
 
   update() {
     this.draw();
+
+    // Move left & right
+    this.position.x += this.velocity.x;
+
+    // Falling
     this.position.y += this.velocity.y;
 
     // Keep player falling until they hit bottom of canvas
@@ -59,5 +64,18 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
-  console.log(event);
+  switch (event.key) {
+    // Move left
+    case "a":
+      player.velocity.x = -1;
+      break;
+
+    // Move right
+    case "d":
+      player.velocity.x = 1;
+      break;
+
+    default:
+      break;
+  }
 });
