@@ -17,19 +17,26 @@ class Player {
       x: 0,
       y: 1,
     };
+    this.height = 100;
   }
 
   draw() {
     c.fillStyle = "red";
     // x & y refer to those created in the constructor
-    c.fillRect(this.position.x, this.position.y, 100, 100);
+    c.fillRect(this.position.x, this.position.y, 100, this.height);
   }
 
   update() {
     this.draw();
     this.position.y += this.velocity.y;
-    // Player falls faster over time
-    this.velocity.y += gravity;
+
+    // Keep player falling until they hit bottom of canvas
+    if (this.position.y + this.height + this.velocity.y < canvas.height) {
+      // Player falls faster over time
+      this.velocity.y += gravity;
+    } else {
+      this.velocity.y = 0;
+    }
   }
 }
 
