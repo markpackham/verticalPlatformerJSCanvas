@@ -49,6 +49,19 @@ class Player {
 const player = new Player({ x: 0, y: 0 });
 const player2 = new Player({ x: 300, y: 100 });
 
+// Check if keyboard key pressed down
+const keys = {
+  a: {
+    pressed: false,
+  },
+  d: {
+    pressed: false,
+  },
+  w: {
+    pressed: false,
+  },
+};
+
 // Animate
 function animate() {
   // Recursion
@@ -59,20 +72,54 @@ function animate() {
 
   player.update();
   player2.update();
+
+  player.velocity.x = 0;
+
+  // Only move character if key pressed down
+  if (keys.a.pressed) {
+    player.velocity.x = -5;
+  } else if (keys.d.pressed) {
+    player.velocity.x = 5;
+  }
 }
 
 animate();
 
+// Keydown
 window.addEventListener("keydown", (event) => {
   switch (event.key) {
     // Move left
     case "a":
-      player.velocity.x = -1;
+      keys.a.pressed = true;
       break;
 
     // Move right
     case "d":
-      player.velocity.x = 1;
+      keys.d.pressed = true;
+      break;
+
+    // Jump
+    case "w":
+      keys.w.pressed = true;
+      player.velocity.y = -20;
+      break;
+
+    default:
+      break;
+  }
+});
+
+// Keyup
+window.addEventListener("keyup", (event) => {
+  switch (event.key) {
+    // Move left
+    case "a":
+      keys.a.pressed = false;
+      break;
+
+    // Move right
+    case "d":
+      keys.d.pressed = false;
       break;
 
     default:
