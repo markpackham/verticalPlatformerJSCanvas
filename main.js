@@ -6,11 +6,9 @@ const c = canvas.getContext("2d");
 
 // Player
 class Player {
-  constructor() {
-    this.position = {
-      x: 0,
-      y: 0,
-    };
+  // We pass a new position (x & y Object) ever time we create a new player
+  constructor(position) {
+    this.position = position;
   }
 
   draw() {
@@ -26,7 +24,8 @@ class Player {
 }
 
 // Create Player
-const player = new Player();
+const player = new Player({ x: 0, y: 0 });
+const player2 = new Player({ x: 0, y: 0 });
 
 function animate() {
   // Recursion
@@ -36,6 +35,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   player.update();
+  player2.update();
 }
 
 animate();
