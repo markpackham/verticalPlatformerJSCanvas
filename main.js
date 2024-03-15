@@ -5,6 +5,11 @@ const c = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 576;
 
+const scaledCanvas = {
+  width: canvas.width / 4,
+  height: canvas.height / 4,
+};
+
 gravity = 0.5;
 
 // Sprite for drawing background & character art
@@ -102,6 +107,8 @@ function animate() {
   // c.scale is a global method but here it will only target what lies within
   // c.save() and c.restore() so only the background gets a scale increase of *4
   c.scale(4, 4);
+  // Use translate so first screen is bottom left corner of background image
+  c.translate(0, -background.image.height + scaledCanvas.height);
   // Render background on screen
   background.update();
   c.restore();
