@@ -96,8 +96,15 @@ function animate() {
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Background
+  c.save();
+  // Increase size of background image
+  // c.scale is a global method but here it will only target what lies within
+  // c.save() and c.restore() so only the background gets a scale increase of *4
+  c.scale(4, 4);
   // Render background on screen
   background.update();
+  c.restore();
 
   player.update();
   player2.update();
