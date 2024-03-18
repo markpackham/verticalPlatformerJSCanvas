@@ -1,7 +1,7 @@
 // Player
 class Player {
   // We pass a new position (x & y Object) ever time we create a new player
-  constructor(position) {
+  constructor({ position, collisionBlocks }) {
     this.position = position;
     // Since the character falls downwards by default we can ignore the "x" axis
     this.velocity = {
@@ -9,6 +9,8 @@ class Player {
       y: 1,
     };
     this.height = 100;
+    // We need to add collision blocks to monitor for collisions
+    this.collisionBlocks = collisionBlocks;
   }
 
   draw() {

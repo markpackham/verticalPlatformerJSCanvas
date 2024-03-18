@@ -53,8 +53,12 @@ platformCollisions2D.forEach((row, y) => {
   });
 });
 
-// Create Player
-const player = new Player({ x: 0, y: 0 });
+// Create Player & give them the collision blocks
+const player = new Player({
+  position: { x: 100, y: 0 },
+  // collisionBlocks: collisionBlocks,
+  collisionBlocks,
+});
 
 // Check if keyboard key pressed down
 const keys = {
