@@ -1,3 +1,6 @@
+// Gravity
+gravity = 0.5;
+
 // Canvas
 const canvas = document.querySelector("canvas");
 // Canvas context for 2d API as opposed to a 3d one
@@ -18,9 +21,14 @@ for (let i = 0; i < floorCollisions.length; i += 36) {
   floorCollisions2D.push(floorCollisions.slice(i, i + 36));
 }
 
-console.log(floorCollisions2D);
-
-gravity = 0.5;
+floorCollisions2D.forEach((row) => {
+  row.forEach((symbol) => {
+    // 202 is the symbol for a collision block
+    if (symbol === 202) {
+      // block gets drawn
+    }
+  });
+});
 
 // Sprite for drawing background & character art
 class Sprite {
