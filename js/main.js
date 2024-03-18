@@ -13,7 +13,12 @@ const scaledCanvas = {
   height: canvas.height / 4,
 };
 
+// Floor & Platform block arrays
 const floorCollisions2D = [];
+const platformCollisions2D = [];
+const collisionBlocks = [];
+// Platform collision blocks behave differently from floor ones that you can't pass through
+const platformCollisionBlocks = [];
 
 for (let i = 0; i < floorCollisions.length; i += 36) {
   // Slice 36 items of 1D floorCollisions array
@@ -21,7 +26,6 @@ for (let i = 0; i < floorCollisions.length; i += 36) {
   floorCollisions2D.push(floorCollisions.slice(i, i + 36));
 }
 
-const collisionBlocks = [];
 // "y" is the index we're looping through
 floorCollisions2D.forEach((row, y) => {
   row.forEach((symbol, x) => {
@@ -29,6 +33,20 @@ floorCollisions2D.forEach((row, y) => {
     if (symbol === 202) {
       collisionBlocks.push(
         // 16 pixels is the size of the collision block so "* 16"
+        new CollisionBlock({ position: { x: x * 16, y: y * 16 } })
+      );
+    }
+  });
+});
+
+for (let i = 0; i < platformCollisions.length; i += 36) {
+  platformCollisions2D.push(platformCollisions.slice(i, i + 36));
+}
+
+platformCollisions2D.forEach((row, y) => {
+  row.forEach((symbol, x) => {
+    if (symbol === 202) {
+      platformCollisionBlocks.push(
         new CollisionBlock({ position: { x: x * 16, y: y * 16 } })
       );
     }
@@ -81,6 +99,10 @@ function animate() {
   collisionBlocks.forEach((collisionBlock) => {
     // Render collision blocks
     collisionBlock.update();
+  });
+
+  platformCollisionBlocks.forEach((platformCollisionBlock) => {
+    platformCollisionBlock.update();
   });
 
   c.restore();
