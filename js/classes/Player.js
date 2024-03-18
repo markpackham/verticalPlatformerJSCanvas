@@ -9,8 +9,8 @@ class Player {
       y: 1,
     };
 
-    this.width = 100;
-    this.height = 100;
+    this.width = 25;
+    this.height = 25;
 
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
@@ -19,7 +19,7 @@ class Player {
   draw() {
     c.fillStyle = "red";
     // x & y refer to those created in the constructor
-    c.fillRect(this.position.x, this.position.y, 100, this.height, this.width);
+    c.fillRect(this.position.x, this.position.y, this.height, this.width);
   }
 
   update() {
@@ -61,6 +61,10 @@ class Player {
           object2: collisionBlock,
         })
       ) {
+        // Stop falling when hitting a block
+        if (this.velocity.y > 0) {
+          this.velocity.y = 0;
+        }
       }
     }
   }

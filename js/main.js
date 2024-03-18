@@ -87,11 +87,10 @@ function animate() {
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Background
+  // Everything between save() & restore() gets impacted by scale
   c.save();
   // Increase size of background image
   // c.scale is a global method but here it will only target what lies within
-  // c.save() and c.restore() so only the background gets a scale increase of *4
   c.scale(4, 4);
   // Use translate so first screen is bottom left corner of background image
   c.translate(0, -background.image.height + scaledCanvas.height);
@@ -108,8 +107,6 @@ function animate() {
     platformCollisionBlock.update();
   });
 
-  c.restore();
-
   player.update();
 
   player.velocity.x = 0;
@@ -120,6 +117,8 @@ function animate() {
   } else if (keys.d.pressed) {
     player.velocity.x = 5;
   }
+
+  c.restore();
 }
 
 animate();
