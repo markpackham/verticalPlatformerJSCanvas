@@ -55,7 +55,6 @@ platformCollisions2D.forEach((row, y) => {
 
 // Create Player
 const player = new Player({ x: 0, y: 0 });
-const player2 = new Player({ x: 300, y: 100 });
 
 // Check if keyboard key pressed down
 const keys = {
@@ -108,7 +107,6 @@ function animate() {
   c.restore();
 
   player.update();
-  player2.update();
 
   player.velocity.x = 0;
 
