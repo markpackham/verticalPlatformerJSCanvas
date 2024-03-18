@@ -30,6 +30,8 @@ class Player {
 
     this.applyGravity();
 
+    this.checkForVerticalCollisions();
+
     // // Obsolete now the floor at the bottom stops the player from falling through the screen
     // // Keep player falling until they hit bottom of canvas
     // if (this.position.y + this.height + this.velocity.y < canvas.height) {
@@ -46,5 +48,14 @@ class Player {
 
     // Player falls faster over time
     this.velocity.y += gravity;
+  }
+
+  checkForVerticalCollisions() {
+    for (let i = 0; i < this.collisionBlocks.length; i++) {
+      const collisionBlock = this.collisionBlocks[i];
+
+      if (this.position.y + this.height) {
+      }
+    }
   }
 }
