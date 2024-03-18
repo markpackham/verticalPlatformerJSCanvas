@@ -21,11 +21,16 @@ for (let i = 0; i < floorCollisions.length; i += 36) {
   floorCollisions2D.push(floorCollisions.slice(i, i + 36));
 }
 
-floorCollisions2D.forEach((row) => {
-  row.forEach((symbol) => {
+const collisionBlocks = [];
+// "y" is the index we're looping through
+floorCollisions2D.forEach((row, y) => {
+  row.forEach((symbol, x) => {
     // 202 is the symbol for a collision block
     if (symbol === 202) {
-      // block gets drawn
+      collisionBlocks.push(
+        // 16 pixels is the size of the collision block so "* 16"
+        new CollisionBlock({ position: { x: x * 16, y: y * 16 } })
+      );
     }
   });
 });
@@ -71,6 +76,13 @@ function animate() {
   c.translate(0, -background.image.height + scaledCanvas.height);
   // Render background on screen
   background.update();
+
+  // Floor collision blocks
+  collisionBlocks.forEach((collisionBlock) => {
+    // Render collision blocks
+    collisionBlock.update();
+  });
+
   c.restore();
 
   player.update();
