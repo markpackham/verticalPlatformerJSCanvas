@@ -10,6 +10,16 @@ const scaledCanvas = {
   height: canvas.height / 4,
 };
 
+const floorCollisions2D = [];
+
+for (let i = 0; i < floorCollisions.length; i += 36) {
+  // Slice 36 items of 1D floorCollisions array
+  // each slice is then a sub array added to the 2D array floorCollisions2D
+  floorCollisions2D.push(floorCollisions.slice(i, i + 36));
+}
+
+console.log(floorCollisions2D);
+
 gravity = 0.5;
 
 // Sprite for drawing background & character art
