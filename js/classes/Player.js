@@ -8,7 +8,10 @@ class Player {
       x: 0,
       y: 1,
     };
+
+    this.width = 100;
     this.height = 100;
+
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
   }
@@ -16,7 +19,7 @@ class Player {
   draw() {
     c.fillStyle = "red";
     // x & y refer to those created in the constructor
-    c.fillRect(this.position.x, this.position.y, 100, this.height);
+    c.fillRect(this.position.x, this.position.y, 100, this.height, this.width);
   }
 
   update() {
@@ -25,15 +28,23 @@ class Player {
     // Move left & right
     this.position.x += this.velocity.x;
 
+    this.applyGravity();
+
+    // // Obsolete now the floor at the bottom stops the player from falling through the screen
+    // // Keep player falling until they hit bottom of canvas
+    // if (this.position.y + this.height + this.velocity.y < canvas.height) {
+    //   // Player falls faster over time
+    //   this.velocity.y += gravity;
+    // } else {
+    //   this.velocity.y = 0;
+    // }
+  }
+
+  applyGravity() {
     // Falling
     this.position.y += this.velocity.y;
 
-    // Keep player falling until they hit bottom of canvas
-    if (this.position.y + this.height + this.velocity.y < canvas.height) {
-      // Player falls faster over time
-      this.velocity.y += gravity;
-    } else {
-      this.velocity.y = 0;
-    }
+    // Player falls faster over time
+    this.velocity.y += gravity;
   }
 }
