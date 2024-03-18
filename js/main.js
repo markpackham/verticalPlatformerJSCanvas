@@ -30,64 +30,6 @@ floorCollisions2D.forEach((row) => {
   });
 });
 
-// Sprite for drawing background & character art
-class Sprite {
-  constructor({ position, imageSrc }) {
-    this.position = position;
-    this.image = new Image();
-    this.image.src = imageSrc;
-  }
-
-  draw() {
-    // Don't waste time with an image that does not exist
-    if (!this.image) return;
-
-    c.drawImage(this.image, this.position.x, this.position.y);
-  }
-
-  update() {
-    this.draw();
-  }
-}
-
-// Player
-class Player {
-  // We pass a new position (x & y Object) ever time we create a new player
-  constructor(position) {
-    this.position = position;
-    // Since the character falls downwards by default we can ignore the "x" axis
-    this.velocity = {
-      x: 0,
-      y: 1,
-    };
-    this.height = 100;
-  }
-
-  draw() {
-    c.fillStyle = "red";
-    // x & y refer to those created in the constructor
-    c.fillRect(this.position.x, this.position.y, 100, this.height);
-  }
-
-  update() {
-    this.draw();
-
-    // Move left & right
-    this.position.x += this.velocity.x;
-
-    // Falling
-    this.position.y += this.velocity.y;
-
-    // Keep player falling until they hit bottom of canvas
-    if (this.position.y + this.height + this.velocity.y < canvas.height) {
-      // Player falls faster over time
-      this.velocity.y += gravity;
-    } else {
-      this.velocity.y = 0;
-    }
-  }
-}
-
 // Create Player
 const player = new Player({ x: 0, y: 0 });
 const player2 = new Player({ x: 300, y: 100 });
