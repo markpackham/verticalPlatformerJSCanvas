@@ -54,7 +54,13 @@ class Player {
     for (let i = 0; i < this.collisionBlocks.length; i++) {
       const collisionBlock = this.collisionBlocks[i];
 
-      if (this.position.y + this.height) {
+      // Check if player hits a block both vertically or horizontally
+      if (
+        collision({
+          object1: this,
+          object2: collisionBlock,
+        })
+      ) {
       }
     }
   }
