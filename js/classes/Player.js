@@ -56,14 +56,15 @@ class Player {
       ) {
         if (this.velocity.x > 0) {
           this.velocity.x = 0;
-
           this.position.x = collisionBlock.position.x - this.width - 0.01;
+          break;
         }
 
         if (this.velocity.x < 0) {
           this.velocity.x = 0;
           this.position.x =
-            collisionBlock.position.x + this.collisionBlock.width + 0.01;
+            collisionBlock.position.x + collisionBlock.width + 0.01;
+          break;
         }
       }
     }
@@ -94,13 +95,15 @@ class Player {
           // Make sure player falls ontop of block rather than through
           // The 0.01 is to deal with horizontal collisions to factor in bottom of player & top of collision block
           this.position.y = collisionBlock.position.y - this.height - 0.01;
+          break;
         }
 
         // Don't allow player to jump up through a floor block
         if (this.velocity.y < 0) {
           this.velocity.y = 0;
           this.position.y =
-            collisionBlock.position.y + this.collisionBlock.height + 0.01;
+            collisionBlock.position.y + collisionBlock.height + 0.01;
+          break;
         }
       }
     }

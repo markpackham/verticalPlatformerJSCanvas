@@ -139,7 +139,7 @@ window.addEventListener("keydown", (event) => {
     // Jump
     case "w":
       keys.w.pressed = true;
-      player.velocity.y = -10;
+      player.velocity.y = -8;
       break;
 
     default:
