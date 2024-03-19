@@ -13,6 +13,15 @@ class Player extends Sprite {
 
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
+
+    this.hitbox = {
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      width: 10,
+      height: 10,
+    };
   }
 
   // // Rendered obsolete now that Sprite is the parent
