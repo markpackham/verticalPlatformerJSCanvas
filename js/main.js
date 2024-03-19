@@ -61,6 +61,8 @@ const player = new Player({
   // Path for images starts at root from index.html file
   // otherwise it's be imageSrc: "../img/warrior/Idle.png"
   imageSrc: "./img/warrior/Idle.png",
+  // Idle.png has 8 frames
+  frameRate: 8,
 });
 
 // Check if keyboard key pressed down
