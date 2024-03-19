@@ -23,6 +23,8 @@ class Player extends Sprite {
   // }
 
   update() {
+    this.updateFrames();
+
     // Block that surrounds character sprite to help detect collisions
     c.fillStyle = "rgba(0,255,0,0.3)";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);

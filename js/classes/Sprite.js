@@ -14,6 +14,8 @@ class Sprite {
 
     // Frame rate is different for all sprites
     this.frameRate = frameRate;
+
+    this.currentFrame = 0;
   }
 
   draw() {
@@ -22,7 +24,7 @@ class Sprite {
 
     const cropBox = {
       position: {
-        x: 0,
+        x: (this.currentFrame * this.image.width) / this.frameRate,
         y: 0,
       },
 
@@ -48,5 +50,16 @@ class Sprite {
 
   update() {
     this.draw();
+    this.updateFrames();
+  }
+
+  updateFrames() {
+    // Subtract a value of 1 from framerate (since some Sprites like the background only have 1 frame)
+    if (this.currentFrame < this.frameRate - 1) {
+      this.currentFrame++;
+    } else {
+      // Set back to the 0 point of our animation loop
+      this.currentFrame = 0;
+    }
   }
 }
