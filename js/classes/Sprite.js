@@ -1,6 +1,6 @@
 // Sprite for drawing background & character art
 class Sprite {
-  constructor({ position, imageSrc, frameRate = 1 }) {
+  constructor({ position, imageSrc, frameRate = 1, frameBuffer = 5 }) {
     this.position = position;
 
     this.image = new Image();
@@ -16,6 +16,10 @@ class Sprite {
     this.frameRate = frameRate;
 
     this.currentFrame = 0;
+
+    // Slow down animation loop
+    this.frameBuffer = frameBuffer;
+    this.elapsedFrames = 0;
   }
 
   draw() {
@@ -54,12 +58,16 @@ class Sprite {
   }
 
   updateFrames() {
-    // Subtract a value of 1 from framerate (since some Sprites like the background only have 1 frame)
-    if (this.currentFrame < this.frameRate - 1) {
-      this.currentFrame++;
-    } else {
-      // Set back to the 0 point of our animation loop
-      this.currentFrame = 0;
+    this.elapsedFrames++;
+
+    if (this.elapsedFrames % this.frameBuffer === 0) {
+      // Subtract a value of 1 from framerate (since some Sprites like the background only have 1 frame)
+      if (this.currentFrame < this.frameRate - 1) {
+        this.currentFrame++;
+      } else {
+        // Set back to the 0 point of our animation loop
+        this.currentFrame = 0;
+      }
     }
   }
 }
