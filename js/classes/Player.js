@@ -1,7 +1,9 @@
 // Player
-class Player {
+class Player extends Sprite {
   // We pass a new position (x & y Object) ever time we create a new player
-  constructor({ position, collisionBlocks }) {
+  constructor({ position, collisionBlocks, imgSrc }) {
+    super({ imageSrc });
+
     this.position = position;
     // Since the character falls downwards by default we can ignore the "x" axis
     this.velocity = {
