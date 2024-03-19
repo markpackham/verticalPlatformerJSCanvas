@@ -17,7 +17,24 @@ class Sprite {
     // Don't waste time with an image that does not exist
     if (!this.image) return;
 
-    c.drawImage(this.image, this.position.x, this.position.y);
+    const cropBox = {
+      position: {
+        x: 0,
+        y: 0,
+      },
+      width: 0,
+      height: 0,
+    };
+
+    c.drawImage(
+      this.image,
+      cropBox.position.x,
+      cropBox.position.y,
+      cropBox.width,
+      cropBox.height,
+      this.position.x,
+      this.position.y
+    );
   }
 
   update() {
