@@ -58,6 +58,9 @@ const player = new Player({
   position: { x: 100, y: 0 },
   // collisionBlocks: collisionBlocks,
   collisionBlocks,
+  // Path for images starts at root from index.html file
+  // otherwise it's be imageSrc: "../img/warrior/Idle.png"
+  imageSrc: "./img/warrior/Idle.png",
 });
 
 // Check if keyboard key pressed down

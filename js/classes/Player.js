@@ -1,7 +1,7 @@
 // Player
 class Player extends Sprite {
   // We pass a new position (x & y Object) ever time we create a new player
-  constructor({ position, collisionBlocks, imgSrc }) {
+  constructor({ position, collisionBlocks, imageSrc }) {
     super({ imageSrc });
 
     this.position = position;
@@ -11,18 +11,16 @@ class Player extends Sprite {
       y: 1,
     };
 
-    this.width = 25;
-    this.height = 25;
-
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
   }
 
-  draw() {
-    c.fillStyle = "red";
-    // x & y refer to those created in the constructor
-    c.fillRect(this.position.x, this.position.y, this.height, this.width);
-  }
+  // // Rendered obsolete now that Sprite is the parent
+  // draw() {
+  //   c.fillStyle = "red";
+  //   // x & y refer to those created in the constructor
+  //   c.fillRect(this.position.x, this.position.y, this.height, this.width);
+  // }
 
   update() {
     this.draw();
