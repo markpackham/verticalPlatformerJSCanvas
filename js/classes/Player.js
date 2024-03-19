@@ -23,6 +23,10 @@ class Player extends Sprite {
   // }
 
   update() {
+    // Block that surrounds character sprite to help detect collisions
+    c.fillStyle = "rgba(0,255,0,0.3)";
+    c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
     this.draw();
 
     // Move left & right
