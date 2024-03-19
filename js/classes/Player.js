@@ -13,15 +13,6 @@ class Player extends Sprite {
 
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
-
-    this.hitbox = {
-      position: {
-        x: this.position.x,
-        y: this.position.y,
-      },
-      width: 10,
-      height: 10,
-    };
   }
 
   // // Rendered obsolete now that Sprite is the parent
@@ -33,10 +24,20 @@ class Player extends Sprite {
 
   update() {
     this.updateFrames();
+    this.updateHitbox();
 
-    // Block that surrounds character sprite to help detect collisions
+    // Draws out player image
     c.fillStyle = "rgba(0,255,0,0.3)";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    // Draws out player hitbox
+    c.fillStyle = "rgba(255,0,0,0.2)";
+    c.fillRect(
+      this.hitbox.position.x,
+      this.hitbox.position.y,
+      this.hitbox.width,
+      this.hitbox.height
+    );
 
     this.draw();
 
@@ -57,6 +58,17 @@ class Player extends Sprite {
     // } else {
     //   this.velocity.y = 0;
     // }
+  }
+
+  updateHitbox() {
+    this.hitbox = {
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      width: 10,
+      height: 10,
+    };
   }
 
   checkForHorizontalCollisions() {
