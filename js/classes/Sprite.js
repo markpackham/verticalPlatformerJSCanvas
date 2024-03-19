@@ -1,13 +1,20 @@
 // Sprite for drawing background & character art
 class Sprite {
-  constructor({ position, imageSrc, frameRate = 1, frameBuffer = 5 }) {
+  constructor({
+    position,
+    imageSrc,
+    frameRate = 1,
+    frameBuffer = 5,
+    scale = 1,
+  }) {
     this.position = position;
+    this.scale = scale;
 
     this.image = new Image();
     // Grab image width & height as soon as it loads
     this.image.onload = () => {
-      this.width = this.image.width / this.frameRate;
-      this.height = this.image.height;
+      this.width = (this.image.width / this.frameRate) * this.scale;
+      this.height = this.image.height * this.scale;
     };
 
     this.image.src = imageSrc;
