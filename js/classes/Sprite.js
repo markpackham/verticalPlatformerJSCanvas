@@ -1,6 +1,6 @@
 // Sprite for drawing background & character art
 class Sprite {
-  constructor({ position, imageSrc }) {
+  constructor({ position, imageSrc, frameRate = 1 }) {
     this.position = position;
 
     this.image = new Image();
@@ -11,6 +11,9 @@ class Sprite {
     };
 
     this.image.src = imageSrc;
+
+    // Frame rate is different for all sprites
+    this.frameRate = this.frameRate;
   }
 
   draw() {
@@ -22,18 +25,24 @@ class Sprite {
         x: 0,
         y: 0,
       },
-      width: 0,
-      height: 0,
+
+      width: this.image.width / 8,
+      height: this.image.height,
     };
 
     c.drawImage(
       this.image,
+
+      // Crop box area
       cropBox.position.x,
       cropBox.position.y,
       cropBox.width,
       cropBox.height,
+
       this.position.x,
-      this.position.y
+      this.position.y,
+      this.width,
+      this.height
     );
   }
 
