@@ -6,14 +6,14 @@ class Sprite {
     this.image = new Image();
     // Grab image width & height as soon as it loads
     this.image.onload = () => {
-      this.width = this.image.width;
+      this.width = this.image.width / this.frameRate;
       this.height = this.image.height;
     };
 
     this.image.src = imageSrc;
 
     // Frame rate is different for all sprites
-    this.frameRate = this.frameRate;
+    this.frameRate = frameRate;
   }
 
   draw() {
@@ -41,7 +41,7 @@ class Sprite {
 
       this.position.x,
       this.position.y,
-      this.width / this.frameRate,
+      this.width,
       this.height
     );
   }
