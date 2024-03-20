@@ -44,9 +44,14 @@ class Player extends Sprite {
     // Move left & right
     this.position.x += this.velocity.x;
 
+    this.updateHitbox();
+
     this.checkForHorizontalCollisions();
 
     this.applyGravity();
+
+    // updateHitbox() twice to avoid jittering
+    this.updateHitbox();
 
     this.checkForVerticalCollisions();
 
@@ -119,9 +124,13 @@ class Player extends Sprite {
         // Stop falling when hitting a floor block
         if (this.velocity.y > 0) {
           this.velocity.y = 0;
-          // Make sure player falls ontop of block rather than through
+
+          const offset =
+            this.hitbox.position.y - this.position.y + this.hitbox.height;
+
+          // Make sure player falls on top of block rather than through
           // The 0.01 is to deal with horizontal collisions to factor in bottom of player & top of collision block
-          this.position.y = collisionBlock.position.y - this.height - 0.01;
+          this.position.y = collisionBlock.position.y - offset - 0.01;
           break;
         }
 
