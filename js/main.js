@@ -60,9 +60,21 @@ const player = new Player({
   collisionBlocks,
   // Path for images starts at root from index.html file
   // otherwise it's be imageSrc: "../img/warrior/Idle.png"
+  // the idle sprite is the default animation
   imageSrc: "./img/warrior/Idle.png",
   // Idle.png has 8 frames
   frameRate: 8,
+
+  animations: {
+    Idle: {
+      imageSrc: "./img/warrior/Idle.png",
+      frameRate: 8,
+    },
+    Run: {
+      imageSrc: "./img/warrior/Run.png",
+      frameRate: 8,
+    },
+  },
 });
 
 // Check if keyboard key pressed down
@@ -118,6 +130,7 @@ function animate() {
 
   // Only move character if key pressed down
   if (keys.a.pressed) {
+    player.switchSprite("Run");
     player.velocity.x = -5;
   } else if (keys.d.pressed) {
     player.velocity.x = 5;

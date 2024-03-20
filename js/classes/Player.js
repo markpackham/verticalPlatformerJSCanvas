@@ -1,7 +1,14 @@
 // Player
 class Player extends Sprite {
   // We pass a new position (x & y Object) ever time we create a new player
-  constructor({ position, collisionBlocks, imageSrc, frameRate, scale = 0.5 }) {
+  constructor({
+    position,
+    collisionBlocks,
+    imageSrc,
+    frameRate,
+    scale = 0.5,
+    animations,
+  }) {
     super({ imageSrc, frameRate, scale });
 
     this.position = position;
@@ -13,14 +20,30 @@ class Player extends Sprite {
 
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
+
+    this.hitBox = {
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      width: 10,
+      height: 10,
+    };
+
+    this.animations = animations;
+
+    // keys like "Idle" or "Run"
+    for (let key in this.animations) {
+      const image = new Image();
+      image.src = this.animations[key].imageSrc;
+
+      this.animations[key].image = image;
+    }
   }
 
-  // // Rendered obsolete now that Sprite is the parent
-  // draw() {
-  //   c.fillStyle = "red";
-  //   // x & y refer to those created in the constructor
-  //   c.fillRect(this.position.x, this.position.y, this.height, this.width);
-  // }
+  switchSprite(key) {
+    this.image = this.animations[key];
+  }
 
   update() {
     this.updateFrames();
