@@ -74,6 +74,10 @@ const player = new Player({
       imageSrc: "./img/warrior/Run.png",
       frameRate: 8,
     },
+    RunLeft: {
+      imageSrc: "./img/warrior/RunLeft.png",
+      frameRate: 8,
+    },
   },
 });
 
@@ -130,10 +134,14 @@ function animate() {
 
   // Only move character if key pressed down
   if (keys.a.pressed) {
-    player.switchSprite("Run");
+    player.switchSprite("RunLeft");
     player.velocity.x = -5;
   } else if (keys.d.pressed) {
+    player.switchSprite("Run");
     player.velocity.x = 5;
+  } else if (player.velocity.y === 0) {
+    // Idle is default state (if player not falling)
+    player.switchSprite("Idle");
   }
 
   c.restore();
