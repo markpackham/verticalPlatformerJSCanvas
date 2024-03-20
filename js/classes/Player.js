@@ -42,7 +42,10 @@ class Player extends Sprite {
   }
 
   switchSprite(key) {
-    this.image = this.animations[key];
+    // Don't bother doing a sprite image swap/switch if we're already on the create sprite image
+    if (this.image === this.animations[key].image) return;
+
+    this.image = this.animations[key].image;
   }
 
   update() {
