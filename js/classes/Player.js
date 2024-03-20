@@ -63,11 +63,11 @@ class Player extends Sprite {
   updateHitbox() {
     this.hitbox = {
       position: {
-        x: this.position.x,
-        y: this.position.y,
+        x: this.position.x + 35,
+        y: this.position.y + 26,
       },
-      width: 10,
-      height: 10,
+      width: 14,
+      height: 27,
     };
   }
 
@@ -112,7 +112,7 @@ class Player extends Sprite {
       // Check if player hits a block both vertically or horizontally
       if (
         collision({
-          object1: this,
+          object1: this.hitbox,
           object2: collisionBlock,
         })
       ) {
