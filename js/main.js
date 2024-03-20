@@ -69,14 +69,18 @@ const player = new Player({
     Idle: {
       imageSrc: "./img/warrior/Idle.png",
       frameRate: 8,
+      // Slowdown animation via buffer
+      frameBuffer: 4,
     },
     Run: {
       imageSrc: "./img/warrior/Run.png",
       frameRate: 8,
+      frameBuffer: 7,
     },
     RunLeft: {
       imageSrc: "./img/warrior/RunLeft.png",
       frameRate: 8,
+      frameBuffer: 7,
     },
   },
 });
@@ -135,10 +139,10 @@ function animate() {
   // Only move character if key pressed down
   if (keys.a.pressed) {
     player.switchSprite("RunLeft");
-    player.velocity.x = -5;
+    player.velocity.x = -3;
   } else if (keys.d.pressed) {
     player.switchSprite("Run");
-    player.velocity.x = 5;
+    player.velocity.x = 3;
   } else if (player.velocity.y === 0) {
     // Idle is default state (if player not falling)
     player.switchSprite("Idle");

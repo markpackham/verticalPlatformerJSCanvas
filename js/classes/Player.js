@@ -46,6 +46,8 @@ class Player extends Sprite {
     if (this.image === this.animations[key].image) return;
 
     this.image = this.animations[key].image;
+    this.frameBuffer = this.animations[key].frameBuffer;
+    this.frameRate = this.animations[key].frameRate;
   }
 
   update() {
