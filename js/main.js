@@ -135,7 +135,7 @@ const background = new Sprite({
 const camera = {
   position: {
     x: 0,
-    y: 0,
+    y: -backgroundImageHeight + scaledCanvas.height,
   },
 };
 
@@ -153,10 +153,7 @@ function animate() {
   // c.scale is a global method but here it will only target what lies within
   c.scale(4, 4);
   // Use translate so first screen is bottom left corner of background image
-  c.translate(
-    camera.position.x,
-    -background.image.height + scaledCanvas.height
-  );
+  c.translate(camera.position.x, camera.position.y);
   // Render background on screen
   background.update();
 
@@ -198,6 +195,7 @@ function animate() {
 
   // Jumping & Falling
   if (player.velocity.y < 0) {
+    player.shouldPanCameraDown({ camera });
     if (player.lastDirection === "right") {
       player.switchSprite("Jump");
     } else {

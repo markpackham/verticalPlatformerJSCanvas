@@ -81,8 +81,6 @@ class Player extends Sprite {
   }
 
   checkForHorizontalCanvasCollision() {
-    console.log(this.hitBox.position.x);
-
     if (
       this.hitBox.position.x + this.hitBox.width + this.velocity.x >=
         backgroundImageWidth ||
@@ -124,17 +122,16 @@ class Player extends Sprite {
   }
 
   shouldPanCameraDown({ camera }) {
-    if (this.cameraBox.position.x <= 0) return;
+    if (this.cameraBox.position.y <= 0) return;
 
-    if (this.cameraBox.position.x <= Math.abs(camera.position.x)) {
-      // When moving left character moves in a negative direction so negative + negative = positive
-      camera.position.x -= this.velocity.x;
+    if (this.cameraBox.position.y <= Math.abs(camera.position.y)) {
+      camera.position.y -= this.velocity.y;
     }
   }
 
   update() {
     this.updateFrames();
-    this.updatehitBox();
+    this.updateHitBox();
 
     this.updateCameraBox();
 
