@@ -4,6 +4,7 @@ class Player extends Sprite {
   constructor({
     position,
     collisionBlocks,
+    platformCollisionBlocks,
     imageSrc,
     frameRate,
     scale = 0.5,
@@ -20,6 +21,8 @@ class Player extends Sprite {
 
     // We need to add collision blocks to monitor for collisions
     this.collisionBlocks = collisionBlocks;
+
+    this.platformCollisionBlocks = platformCollisionBlocks;
 
     this.hitBox = {
       position: {
