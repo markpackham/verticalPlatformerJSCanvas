@@ -121,10 +121,24 @@ class Player extends Sprite {
     }
   }
 
+  // When player jumps up the camera moves down
   shouldPanCameraDown({ camera }) {
-    if (this.cameraBox.position.y <= 0) return;
+    if (this.cameraBox.position.y + this.velocity.y <= 0) return;
 
     if (this.cameraBox.position.y <= Math.abs(camera.position.y)) {
+      camera.position.y -= this.velocity.y;
+    }
+  }
+
+  shouldPanCameraUp({ camera }) {
+    // if (this.cameraBox.position.y + this.velocity.y <= 0) return;
+
+    const scaledDownCanvasHeight = canvas.height / 4;
+
+    if (
+      this.cameraBox.position.y + this.cameraBox.height >=
+      Math.abs(camera.position.y) + scaledDownCanvasHeight
+    ) {
       camera.position.y -= this.velocity.y;
     }
   }
