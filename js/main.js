@@ -179,6 +179,7 @@ function animate() {
     player.switchSprite("RunLeft");
     player.velocity.x = -3;
     player.lastDirection = "left";
+    player.shouldPanCameraToTheRight({ camera });
   } else if (keys.d.pressed) {
     player.switchSprite("Run");
     player.velocity.x = 3;

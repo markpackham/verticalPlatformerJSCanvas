@@ -100,6 +100,16 @@ class Player extends Sprite {
     }
   }
 
+  // Player moves left, camera moves right
+  shouldPanCameraToTheRight({ camera }) {
+    if (this.cameraBox.position.x <= 0) return;
+
+    if (this.cameraBox.position.x <= Math.abs(camera.position.x)) {
+      // When moving left character moves in a negative direction so negative + negative = positive
+      camera.position.x -= this.velocity.x;
+    }
+  }
+
   update() {
     this.updateFrames();
     this.updateHitbox();
