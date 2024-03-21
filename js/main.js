@@ -1,5 +1,5 @@
 // Gravity
-gravity = 0.5;
+gravity = 0.1;
 
 // Canvas
 const canvas = document.querySelector("canvas");
@@ -218,7 +218,7 @@ window.addEventListener("keydown", (event) => {
     // Jump
     case "w":
       keys.w.pressed = true;
-      player.velocity.y = -8;
+      player.velocity.y = -4;
       break;
 
     default:
