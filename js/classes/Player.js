@@ -123,6 +123,15 @@ class Player extends Sprite {
     }
   }
 
+  shouldPanCameraDown({ camera }) {
+    if (this.cameraBox.position.x <= 0) return;
+
+    if (this.cameraBox.position.x <= Math.abs(camera.position.x)) {
+      // When moving left character moves in a negative direction so negative + negative = positive
+      camera.position.x -= this.velocity.x;
+    }
+  }
+
   update() {
     this.updateFrames();
     this.updatehitBox();
@@ -155,14 +164,14 @@ class Player extends Sprite {
     // Move left & right
     this.position.x += this.velocity.x;
 
-    this.updatehitBox();
+    this.updateHitBox();
 
     this.checkForHorizontalCollisions();
 
     this.applyGravity();
 
-    // updatehitBox() twice to avoid jittering
-    this.updatehitBox();
+    // updateHitBox() twice to avoid jittering
+    this.updateHitBox();
 
     this.checkForVerticalCollisions();
 
@@ -176,7 +185,7 @@ class Player extends Sprite {
     // }
   }
 
-  updatehitBox() {
+  updateHitBox() {
     this.hitBox = {
       position: {
         x: this.position.x + 35,
