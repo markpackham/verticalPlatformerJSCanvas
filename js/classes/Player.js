@@ -80,6 +80,11 @@ class Player extends Sprite {
     };
   }
 
+  // When character moves right the camera moves everything to the left
+  shouldPanCameraToTheLeft() {
+    const cameraBoxRightSide = this.cameraBox.position.x + this.cameraBox.width;
+  }
+
   update() {
     this.updateFrames();
     this.updateHitbox();
