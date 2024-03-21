@@ -47,7 +47,7 @@ platformCollisions2D.forEach((row, y) => {
   row.forEach((symbol, x) => {
     if (symbol === 202) {
       platformCollisionBlocks.push(
-        new CollisionBlock({ position: { x: x * 16, y: y * 16 } })
+        new CollisionBlock({ position: { x: x * 16, y: y * 16 }, height: 4 })
       );
     }
   });
