@@ -55,9 +55,12 @@ platformCollisions2D.forEach((row, y) => {
 
 // Create Player & give them the collision blocks
 const player = new Player({
-  position: { x: 100, y: 0 },
+  position: { x: 120, y: 0 },
+  // Shorthand syntax for identical key & value
   // collisionBlocks: collisionBlocks,
   collisionBlocks,
+  platformCollisionBlocks,
+
   // Path for images starts at root from index.html file
   // otherwise it's be imageSrc: "../img/warrior/Idle.png"
   // the idle sprite is the default animation

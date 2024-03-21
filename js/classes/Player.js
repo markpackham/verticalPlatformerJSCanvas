@@ -193,5 +193,40 @@ class Player extends Sprite {
         }
       }
     }
+
+    // Platform Collision blocks
+    for (let i = 0; i < this.platformCollisionBlocks.length; i++) {
+      const platformCollisionBlock = this.platformCollisionBlocks[i];
+
+      if (
+        collision({
+          object1: this.hitbox,
+          object2: platformCollisionBlock,
+        })
+      ) {
+        if (this.velocity.y > 0) {
+          this.velocity.y = 0;
+
+          const offset =
+            this.hitbox.position.y - this.position.y + this.hitbox.height;
+
+          this.position.y = platformCollisionBlock.position.y - offset - 0.01;
+          break;
+        }
+
+        if (this.velocity.y < 0) {
+          this.velocity.y = 0;
+
+          const offset = this.hitbox.position.y - this.position.y;
+
+          this.position.y =
+            platformCollisionBlock.position.y +
+            platformCollisionBlock.height -
+            offset +
+            0.01;
+          break;
+        }
+      }
+    }
   }
 }
