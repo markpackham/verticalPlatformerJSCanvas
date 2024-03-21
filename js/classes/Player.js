@@ -48,6 +48,9 @@ class Player extends Sprite {
     // or if the image hasn't even been loaded yet
     if (this.image === this.animations[key].image || !this.loaded) return;
 
+    // Jump & Run have different frame numbers so set to 0 to avoid a flash
+    this.currentFrame = 0;
+
     this.image = this.animations[key].image;
     this.frameBuffer = this.animations[key].frameBuffer;
     this.frameRate = this.animations[key].frameRate;

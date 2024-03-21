@@ -172,12 +172,20 @@ function animate() {
     player.lastDirection = "right";
   } else if (player.velocity.y === 0) {
     // Idle is default state (if player not falling)
-    player.switchSprite("Idle");
+    if (player.lastDirection === "right") {
+      player.switchSprite("Idle");
+    } else {
+      player.switchSprite("IdleLeft");
+    }
   }
 
   // Jumping & Falling
   if (player.velocity.y < 0) {
-    player.switchSprite("Jump");
+    if (player.lastDirection === "right") {
+      player.switchSprite("Jump");
+    } else {
+      player.switchSprite("JumpLeft");
+    }
   } else if (player.velocity.y > 0) {
     if (player.lastDirection === "right") {
       player.switchSprite("Fall");
