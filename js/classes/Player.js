@@ -32,6 +32,8 @@ class Player extends Sprite {
 
     this.animations = animations;
 
+    this.lastDirection = "right";
+
     // keys like "Idle" or "Run"
     for (let key in this.animations) {
       const image = new Image();

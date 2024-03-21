@@ -165,9 +165,11 @@ function animate() {
   if (keys.a.pressed) {
     player.switchSprite("RunLeft");
     player.velocity.x = -3;
+    player.lastDirection = "left";
   } else if (keys.d.pressed) {
     player.switchSprite("Run");
     player.velocity.x = 3;
+    player.lastDirection = "right";
   } else if (player.velocity.y === 0) {
     // Idle is default state (if player not falling)
     player.switchSprite("Idle");
@@ -177,7 +179,11 @@ function animate() {
   if (player.velocity.y < 0) {
     player.switchSprite("Jump");
   } else if (player.velocity.y > 0) {
-    player.switchSprite("Fall");
+    if (player.lastDirection === "right") {
+      player.switchSprite("Fall");
+    } else {
+      player.switchSprite("FallLeft");
+    }
   }
 
   c.restore();
