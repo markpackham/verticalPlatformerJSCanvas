@@ -44,6 +44,16 @@ class Player extends Sprite {
 
       this.animations[key].image = image;
     }
+
+    // Camera for screen movement
+    this.cameraBox = {
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      width: 200,
+      height: 80,
+    };
   }
 
   switchSprite(key) {
