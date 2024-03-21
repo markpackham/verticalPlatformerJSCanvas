@@ -80,6 +80,17 @@ class Player extends Sprite {
     };
   }
 
+  checkForHorizontalCanvasCollision() {
+    if (
+      this.hitBox.position.x + this.hitBox.width + this.velocity.x >=
+        backgroundImageWidth ||
+      this.hitBox.position.x + this.velocity.x <= 0
+    ) {
+      // Forbid player from moving beyond screen size
+      this.velocity.x = 0;
+    }
+  }
+
   // When character moves right the camera moves everything to the left
   shouldPanCameraToTheLeft({ canvas, camera }) {
     const cameraBoxRightSide = this.cameraBox.position.x + this.cameraBox.width;
@@ -89,7 +100,7 @@ class Player extends Sprite {
     const scaledDownCanvasWidth = canvas.width / 4;
 
     // Don't move camera if we go beyond the background with of 576 pixels
-    if (cameraBoxRightSide >= 576) return;
+    if (cameraBoxRightSide >= backgroundImageWidth) return;
 
     // Use Math absolute to make sure camera position is always a positive value
     if (

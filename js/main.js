@@ -170,6 +170,8 @@ function animate() {
     platformCollisionBlock.update();
   });
 
+  player.checkForHorizontalCanvasCollision();
+
   player.update();
 
   player.velocity.x = 0;
