@@ -69,9 +69,30 @@ class Player extends Sprite {
     this.frameRate = this.animations[key].frameRate;
   }
 
+  updateCameraBox() {
+    this.cameraBox = {
+      position: {
+        x: this.position.x - 50,
+        y: this.position.y,
+      },
+      width: 200,
+      height: 80,
+    };
+  }
+
   update() {
     this.updateFrames();
     this.updateHitbox();
+
+    this.updateCameraBox();
+
+    c.fillStyle = "rgba(0,0,255,0.2)";
+    c.fillRect(
+      this.cameraBox.position.x,
+      this.cameraBox.position.y,
+      this.cameraBox.width,
+      this.cameraBox.height
+    );
 
     // Draws out player image
     c.fillStyle = "rgba(0,255,0,0.3)";
