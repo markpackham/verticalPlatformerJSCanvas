@@ -183,7 +183,7 @@ function animate() {
     player.switchSprite("Run");
     player.velocity.x = 3;
     player.lastDirection = "right";
-    player.shouldPanCameraToTheLeft();
+    player.shouldPanCameraToTheLeft({ canvas, camera });
   } else if (player.velocity.y === 0) {
     // Idle is default state (if player not falling)
     if (player.lastDirection === "right") {

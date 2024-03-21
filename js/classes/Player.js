@@ -81,14 +81,21 @@ class Player extends Sprite {
   }
 
   // When character moves right the camera moves everything to the left
-  shouldPanCameraToTheLeft() {
+  shouldPanCameraToTheLeft({ canvas, camera }) {
     const cameraBoxRightSide = this.cameraBox.position.x + this.cameraBox.width;
 
     // We divide by 4 since the canvas is scaled up by 4 for the background in main.js
     // so we compensate for  c.scale(4, 4);
     const scaledDownCanvasWidth = canvas.width / 4;
 
-    if (cameraBoxRightSide >= scaledDownCanvasWidth) {
+    // Don't move camera if we go beyond the background with of 576 pixels
+    if (cameraBoxRightSide >= 576) return;
+
+    // Use Math absolute to make sure camera position is always a positive value
+    if (
+      cameraBoxRightSide >=
+      scaledDownCanvasWidth + Math.abs(camera.position.x)
+    ) {
       camera.position.x -= this.velocity.x;
     }
   }
