@@ -81,6 +81,8 @@ class Player extends Sprite {
   }
 
   checkForHorizontalCanvasCollision() {
+    console.log(this.hitBox.position.x);
+
     if (
       this.hitBox.position.x + this.hitBox.width + this.velocity.x >=
         backgroundImageWidth ||
@@ -123,7 +125,7 @@ class Player extends Sprite {
 
   update() {
     this.updateFrames();
-    this.updateHitbox();
+    this.updatehitBox();
 
     this.updateCameraBox();
 
@@ -139,13 +141,13 @@ class Player extends Sprite {
     c.fillStyle = "rgba(0,255,0,0.3)";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-    // Draws out player hitbox
+    // Draws out player hitBox
     c.fillStyle = "rgba(255,0,0,0.2)";
     c.fillRect(
-      this.hitbox.position.x,
-      this.hitbox.position.y,
-      this.hitbox.width,
-      this.hitbox.height
+      this.hitBox.position.x,
+      this.hitBox.position.y,
+      this.hitBox.width,
+      this.hitBox.height
     );
 
     this.draw();
@@ -153,14 +155,14 @@ class Player extends Sprite {
     // Move left & right
     this.position.x += this.velocity.x;
 
-    this.updateHitbox();
+    this.updatehitBox();
 
     this.checkForHorizontalCollisions();
 
     this.applyGravity();
 
-    // updateHitbox() twice to avoid jittering
-    this.updateHitbox();
+    // updatehitBox() twice to avoid jittering
+    this.updatehitBox();
 
     this.checkForVerticalCollisions();
 
@@ -174,8 +176,8 @@ class Player extends Sprite {
     // }
   }
 
-  updateHitbox() {
-    this.hitbox = {
+  updatehitBox() {
+    this.hitBox = {
       position: {
         x: this.position.x + 35,
         y: this.position.y + 26,
@@ -191,7 +193,7 @@ class Player extends Sprite {
 
       if (
         collision({
-          object1: this.hitbox,
+          object1: this.hitBox,
           object2: collisionBlock,
         })
       ) {
@@ -200,7 +202,7 @@ class Player extends Sprite {
           this.velocity.x = 0;
 
           const offset =
-            this.hitbox.position.x - this.position.x + this.hitbox.width;
+            this.hitBox.position.x - this.position.x + this.hitBox.width;
 
           this.position.x = collisionBlock.position.x - offset - 0.01;
           break;
@@ -210,7 +212,7 @@ class Player extends Sprite {
         if (this.velocity.x < 0) {
           this.velocity.x = 0;
 
-          const offset = this.hitbox.position.x - this.position.x;
+          const offset = this.hitBox.position.x - this.position.x;
 
           this.position.x =
             collisionBlock.position.x + collisionBlock.width - offset + 0.01;
@@ -235,7 +237,7 @@ class Player extends Sprite {
       // Check if player hits a block both vertically or horizontally
       if (
         collision({
-          object1: this.hitbox,
+          object1: this.hitBox,
           object2: collisionBlock,
         })
       ) {
@@ -243,9 +245,9 @@ class Player extends Sprite {
         if (this.velocity.y > 0) {
           this.velocity.y = 0;
 
-          // We need an offset to stop jittering between the character image, the hitbox & the collision block
+          // We need an offset to stop jittering between the character image, the hitBox & the collision block
           const offset =
-            this.hitbox.position.y - this.position.y + this.hitbox.height;
+            this.hitBox.position.y - this.position.y + this.hitBox.height;
 
           // Make sure player falls on top of block rather than through
           // The 0.01 is to deal with horizontal collisions to factor in bottom of player & top of collision block
@@ -257,7 +259,7 @@ class Player extends Sprite {
         if (this.velocity.y < 0) {
           this.velocity.y = 0;
 
-          const offset = this.hitbox.position.y - this.position.y;
+          const offset = this.hitBox.position.y - this.position.y;
 
           this.position.y =
             collisionBlock.position.y + collisionBlock.height - offset + 0.01;
@@ -272,7 +274,7 @@ class Player extends Sprite {
 
       if (
         platformCollision({
-          object1: this.hitbox,
+          object1: this.hitBox,
           object2: platformCollisionBlock,
         })
       ) {
@@ -280,7 +282,7 @@ class Player extends Sprite {
           this.velocity.y = 0;
 
           const offset =
-            this.hitbox.position.y - this.position.y + this.hitbox.height;
+            this.hitBox.position.y - this.position.y + this.hitBox.height;
 
           this.position.y = platformCollisionBlock.position.y - offset - 0.01;
           break;
