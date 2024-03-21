@@ -140,11 +140,11 @@ class Player extends Sprite {
   }
 
   applyGravity() {
-    // Falling
-    this.position.y += this.velocity.y;
-
     // Player falls faster over time
     this.velocity.y += gravity;
+
+    // Falling
+    this.position.y += this.velocity.y;
   }
 
   checkForVerticalCollisions() {

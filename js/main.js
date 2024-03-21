@@ -173,6 +173,13 @@ function animate() {
     player.switchSprite("Idle");
   }
 
+  // Jumping & Falling
+  if (player.velocity.y < 0) {
+    player.switchSprite("Jump");
+  } else if (player.velocity.y > 0) {
+    player.switchSprite("Fall");
+  }
+
   c.restore();
 }
 
