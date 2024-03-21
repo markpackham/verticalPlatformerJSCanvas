@@ -43,7 +43,8 @@ class Player extends Sprite {
 
   switchSprite(key) {
     // Don't bother doing a sprite image swap/switch if we're already on the create sprite image
-    if (this.image === this.animations[key].image) return;
+    // or if the image hasn't even been loaded yet
+    if (this.image === this.animations[key].image || !this.loaded) return;
 
     this.image = this.animations[key].image;
     this.frameBuffer = this.animations[key].frameBuffer;

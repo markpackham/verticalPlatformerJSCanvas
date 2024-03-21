@@ -10,11 +10,17 @@ class Sprite {
     this.position = position;
     this.scale = scale;
 
+    // We need to create a delay to allow time for sprite swapping
+    // or sometimes we end up with just a red hitbox & no image
+    this.loaded = false;
+
     this.image = new Image();
+
     // Grab image width & height as soon as it loads
     this.image.onload = () => {
       this.width = (this.image.width / this.frameRate) * this.scale;
       this.height = this.image.height * this.scale;
+      this.loaded = true;
     };
 
     this.image.src = imageSrc;
