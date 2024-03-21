@@ -213,19 +213,6 @@ class Player extends Sprite {
           this.position.y = platformCollisionBlock.position.y - offset - 0.01;
           break;
         }
-
-        if (this.velocity.y < 0) {
-          this.velocity.y = 0;
-
-          const offset = this.hitbox.position.y - this.position.y;
-
-          this.position.y =
-            platformCollisionBlock.position.y +
-            platformCollisionBlock.height -
-            offset +
-            0.01;
-          break;
-        }
       }
     }
   }
