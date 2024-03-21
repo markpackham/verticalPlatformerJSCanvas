@@ -89,6 +89,7 @@ class Player extends Sprite {
     const scaledDownCanvasWidth = canvas.width / 4;
 
     if (cameraBoxRightSide >= scaledDownCanvasWidth) {
+      camera.position.x -= this.velocity.x;
     }
   }
 

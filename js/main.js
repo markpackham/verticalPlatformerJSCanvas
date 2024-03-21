@@ -132,6 +132,13 @@ const background = new Sprite({
   imageSrc: "./img/background.png",
 });
 
+const camera = {
+  position: {
+    x: 0,
+    y: 0,
+  },
+};
+
 // Animate
 function animate() {
   // Recursion
@@ -146,7 +153,10 @@ function animate() {
   // c.scale is a global method but here it will only target what lies within
   c.scale(4, 4);
   // Use translate so first screen is bottom left corner of background image
-  c.translate(0, -background.image.height + scaledCanvas.height);
+  c.translate(
+    camera.position.x,
+    -background.image.height + scaledCanvas.height
+  );
   // Render background on screen
   background.update();
 
@@ -173,6 +183,7 @@ function animate() {
     player.switchSprite("Run");
     player.velocity.x = 3;
     player.lastDirection = "right";
+    player.shouldPanCameraToTheLeft();
   } else if (player.velocity.y === 0) {
     // Idle is default state (if player not falling)
     if (player.lastDirection === "right") {
